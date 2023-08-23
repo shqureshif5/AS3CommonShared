@@ -1,4 +1,6 @@
 #!/bin/bash
+#Script to create an app that utilises the shared objects created from the previous script.
+
 # Get username/password from a file
 cred=`cat ../PW.txt`;user=`echo $cred | cut -d':' -f1`;pw=`echo $cred | cut -d':' -f2`
 curl -s -X POST -u admin:$pw -H "Content-Type: application/json" -d \
@@ -59,5 +61,5 @@ curl -s -X POST -u admin:$pw -H "Content-Type: application/json" -d \
         }
     }
 }' \
--k "https://$1/mgmt/shared/appsvcs/declare" 
+-k "https://$1/mgmt/shared/appsvcs/declare" |jq
 

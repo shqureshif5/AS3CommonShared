@@ -1,4 +1,7 @@
 #!/bin/bash
+#Script to create /Common/Shared objects in big-ip abiding by the AS3 principles
+#https://clouddocs.f5.com/products/extensions/f5-appsvcs-extension/latest/userguide/faq.html
+
 # Get username/password from a file
 cred=`cat ../PW.txt`;user=`echo $cred | cut -d':' -f1`;pw=`echo $cred | cut -d':' -f2`
 curl -s -X POST -u admin:$pw -H "Content-Type: application/json" -d \
@@ -88,5 +91,5 @@ curl -s -X POST -u admin:$pw -H "Content-Type: application/json" -d \
         }
     }
 }' \
--k "https://$1/mgmt/shared/appsvcs/declare" 
+-k "https://$1/mgmt/shared/appsvcs/declare" |jq
 
